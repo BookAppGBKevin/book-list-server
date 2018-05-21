@@ -1,0 +1,31 @@
+{
+  "name": "booklistmc",
+  "version": "1.0.0",
+  "description": "Express PG FS Bookapp",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BookAppGBKevin/BookListMC.git"
+  },
+  "keywords": [
+    "express",
+    "pg",
+    "node"
+  ],
+  "author": "GB and Kevin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BookAppGBKevin/BookListMC/issues"
+  },
+  "homepage": "https://github.com/BookAppGBKevin/BookListMC#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "node": "^10.1.0",
+    "pg": "^7.4.3"
+  }
+}
