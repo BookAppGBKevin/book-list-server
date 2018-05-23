@@ -34,6 +34,7 @@ app.get('/api/v1/books/:id', (req, res) => {
     .catch(console.error);
 });
 
+// double check this add later
 app.post('/api/v1/books', (req, res) => {
   let SQL = `INSERT INTO books(author, title, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5);`;
   let values = [req.body.author, req.body.title, req.body.isbn,req.body.image_url, req.body.description];
