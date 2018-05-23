@@ -17,8 +17,29 @@ app.use(cors());
 app.get('/', (req, res) => res.send('Testing 1, 2, 3'));
 
 app.get('/books', (req, res) => {
-  client.query(`SELECT * from books_app;`)
+  client.query(`SELECT * FROM books;`)
     .then(results => res.send(results.rows))
+    .catch(console.error);
+});
+
+app.get('/api/v1/books/:id', (req, res) => {
+  let SQL = `SELECT * FROM books WHERE book_id =$1`;
+  let value = [req.params.id];
+  console.log('NOTICE ME ', req.params);
+  client.query(SQL, value)
+    .then(results => {
+      console.log(results.rows);
+      res.send(results.rows);
+    })
+    .catch(console.error);
+});
+
+// double check this add later
+app.post('/api/v1/books', (req, res) => {
+  let SQL = `INSERT INTO books(author, title, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5);`;
+  let values = [req.body.author, req.body.title, req.body.isbn,req.body.image_url, req.body.description];
+  client.query( SQL, values)
+    .then(() => res.send('insertion complete'))
     .catch(console.error);
 });
 
