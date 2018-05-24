@@ -13,10 +13,12 @@ client.connect();
 client.on('error', err => console.error(err));
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
 app.get('/', (req, res) => res.send('Testing 1, 2, 3'));
 
-app.get('/books', (req, res) => {
+app.get('/api/v1/books', (req, res) => {
   client.query(`SELECT * FROM books;`)
     .then(results => res.send(results.rows))
     .catch(console.error);
