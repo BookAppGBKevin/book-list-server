@@ -45,6 +45,14 @@ app.post('/api/v1/books', (req, res) => {
     .catch(console.error);
 });
 
+app.delete('/api/v1/books/:id', (request, response) => {
+  let SQL = `DELETE FROM books WHERE book_id=$1;`;
+  let values = [request.params.id];
+  client.query( SQL, values )
+    .then(() => response.send('Delete complete'))
+    .catch(console.error);
+});
+
 app.get('*', (req, res) => res.status(403).send('This route does not exist'));
 
 
