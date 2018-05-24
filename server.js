@@ -18,7 +18,7 @@ app.use(express.urlencoded({extended:true}));
 
 app.get('/', (req, res) => res.send('Testing 1, 2, 3'));
 
-app.get('api/v1/books', (req, res) => {
+app.get('/api/v1/books', (req, res) => {
   client.query(`SELECT * FROM books;`)
     .then(results => res.send(results.rows))
     .catch(console.error);
