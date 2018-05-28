@@ -41,15 +41,15 @@ app.post('/api/v1/books', (req, res) => {
   let SQL = `INSERT INTO books(author, title, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5);`;
   let values = [req.body.author, req.body.title, req.body.isbn,req.body.image_url, req.body.description];
   client.query( SQL, values)
-    .then(() => res.send('insertion complete'))
+    .then(() => res.sendStatus(204))
     .catch(console.error);
 });
 
-app.delete('/api/v1/books/:id', (request, response) => {
+app.delete('/api/v1/books/:id', (req, res) => {
   let SQL = `DELETE FROM books WHERE book_id=$1;`;
-  let values = [request.params.id];
+  let values = [req.params.id];
   client.query( SQL, values )
-    .then(() => response.send('Delete complete'))
+    .then(() => res.sendStatus(204))
     .catch(console.error);
 });
 
