@@ -53,6 +53,16 @@ app.delete('/api/v1/books/:id', (req, res) => {
     .catch(console.error);
 });
 
+app.put('/api/v1/books/:id', (req, res) => {
+  let SQL = 'UPDATE books SET author=$1, title=$2, isbn=$3, image_url=$4, description=$5 WHERE book_id=$6;';
+  let values = [req.body.author, req.body.title, req.body.isbn,req.body.image_url, req.body.description, req.params.id];
+
+  client.query(SQL, values)
+    .then(() => res.sendStatus(204))
+    .catch(console.error);
+
+});
+
 app.get('*', (req, res) => res.status(403).send('This route does not exist'));
 
 
